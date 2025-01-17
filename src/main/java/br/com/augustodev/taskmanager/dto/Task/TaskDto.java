@@ -1,6 +1,6 @@
-package br.com.augustodev.taskmanager.dto;
+package br.com.augustodev.taskmanager.dto.Task;
 
-import java.sql.Date;
+import java.util.Date;
 
 import br.com.augustodev.taskmanager.entities.Task;
 import lombok.AllArgsConstructor;
@@ -16,7 +16,7 @@ import lombok.Setter;
 @EqualsAndHashCode(of = "id")
 public class TaskDto {
 
-    private Integer id;
+    private Long id;
 
     private String name;
 
