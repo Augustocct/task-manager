@@ -105,4 +105,14 @@ public class TaskService {
         return task;
     }
 
+    public TaskDto findById(Long id) {
+        TaskDto task = new TaskDto(findOneById(id));
+        return task;
+    }
+
+    public Task findOneById(Long id) {
+        Task task = repository.findOneById(id);
+        return task;
+    }
+
 }

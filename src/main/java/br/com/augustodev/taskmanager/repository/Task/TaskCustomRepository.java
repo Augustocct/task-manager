@@ -32,6 +32,9 @@ public class TaskCustomRepository {
                 "SELECT t.ID, t.NAME, t.DESCRIPTION, t.STATUS, t.PRIORITY, t.START_DATE, t.END_DATE, t.CREATE_DATE"
                         + " FROM TASK t WHERE 1 = 1 ");
 
+        if (filter.taskId() != null) {
+            query.append(" AND t.ID = ? ");
+        }
         if (filter.name() != null && !filter.name().isEmpty()) {
             query.append(" AND t.NAME = ?");
         }
@@ -100,7 +103,7 @@ public class TaskCustomRepository {
 
         StringBuilder query = new StringBuilder(
                 "SELECT count(*) cnt "
-                        + " FROM TASK t ");
+                        + " FROM TASK t WHERE 1 = 1 ");
 
         if (filter.name() != null && !filter.name().isEmpty()) {
             query.append(" AND t.NAME = ?");

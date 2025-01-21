@@ -8,4 +8,6 @@ public interface TaskRepository extends JpaRepository<Task, Integer> {
 
     Task findById(Long id);
 
+    Task findOneById(Long id);
+
 }

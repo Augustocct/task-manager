@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,13 +21,14 @@ import br.com.augustodev.taskmanager.responses.Response;
 import br.com.augustodev.taskmanager.service.TaskService;
 
 @RestController
-@RequestMapping("/api/v1")
+@RequestMapping("/api/v1/task")
+@CrossOrigin(origins = "http://localhost:5173")
 public class TaskController {
 
     @Autowired
     private TaskService taskService;
 
-    @PostMapping("/save")
+    @PostMapping("/new")
     public ResponseEntity<Response<TaskDto>> save(@RequestBody TaskNewData data) {
 
         Response<TaskDto> response = new Response<TaskDto>();
@@ -36,7 +38,7 @@ public class TaskController {
         return ResponseEntity.ok(response);
     }
 
-    @PostMapping("/edit")
+    @PostMapping("/edit/{id}")
     public ResponseEntity<Response<TaskDto>> edit(@RequestBody TaskEditData data) {
 
         Response<TaskDto> response = new Response<TaskDto>();
@@ -46,12 +48,22 @@ public class TaskController {
         return ResponseEntity.ok(response);
     }
 
-    @GetMapping("/list")
+    @PostMapping("/list")
     public ResponseEntity<Response<Page<TaskDto>>> list(@RequestBody TaskFilterData data, Pageable pageable) {
 
         Response<Page<TaskDto>> response = new Response<Page<TaskDto>>();
         Page<TaskDto> tasks = taskService.findByFilter(data, pageable);
         response.setData(tasks);
+
+        return ResponseEntity.ok(response);
+    }
+
+    @GetMapping("/{id}")
+    public ResponseEntity<Response<TaskDto>> getById(Long id) {
+
+        Response<TaskDto> response = new Response<TaskDto>();
+        TaskDto task = taskService.findById(id);
+        response.setData(task);
 
         return ResponseEntity.ok(response);
     }
