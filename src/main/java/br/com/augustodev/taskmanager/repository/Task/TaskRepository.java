@@ -1,13 +1,15 @@
 package br.com.augustodev.taskmanager.repository.Task;
 
+import java.util.Optional;
+
 import org.springframework.data.jpa.repository.JpaRepository;
 
 import br.com.augustodev.taskmanager.entities.Task;
 
 public interface TaskRepository extends JpaRepository<Task, Integer> {
 
-    Task findById(Long id);
+    Optional<Task> findById(Integer id);
 
-    Task findOneById(Long id);
+    Task findOneById(Integer id);
 
 }

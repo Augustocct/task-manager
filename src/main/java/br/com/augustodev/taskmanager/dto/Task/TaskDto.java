@@ -16,7 +16,7 @@ import lombok.Setter;
 @EqualsAndHashCode(of = "id")
 public class TaskDto {
 
-    private Long id;
+    private Integer id;
 
     private String name;
 

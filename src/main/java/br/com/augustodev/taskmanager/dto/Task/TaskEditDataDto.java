@@ -14,7 +14,7 @@ import lombok.Setter;
 @AllArgsConstructor
 public class TaskEditDataDto {
 
-    private Long id;
+    private Integer id;
 
     private String name;
 

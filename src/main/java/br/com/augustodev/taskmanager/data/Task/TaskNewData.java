@@ -2,13 +2,13 @@ package br.com.augustodev.taskmanager.data.Task;
 
 import java.sql.Date;
 
-import jakarta.validation.constraints.Max;
+import jakarta.validation.constraints.Size;
 
 public record TaskNewData(
         String name,
         String description,
         String status,
-        @Max(1) Integer priority,
+        @Size(min= 0, max= 5) Integer priority,
         Date startDate,
         Date endDate) {
 

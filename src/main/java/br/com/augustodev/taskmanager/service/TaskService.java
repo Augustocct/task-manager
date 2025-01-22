@@ -67,7 +67,7 @@ public class TaskService {
     }
 
     private Task editTaskFromData(@Valid TaskEditDataDto editData) {
-        Task task = repository.findById(editData.getId());
+        Task task = repository.findById(editData.getId()).orElseThrow(() -> new RuntimeException("Task not found"));
 
         TaskData data = dateFromEditData(editData);
 
@@ -105,12 +105,12 @@ public class TaskService {
         return task;
     }
 
-    public TaskDto findById(Long id) {
+    public TaskDto findById(Integer id) {
         TaskDto task = new TaskDto(findOneById(id));
         return task;
     }
 
-    public Task findOneById(Long id) {
+    public Task findOneById(Integer id) {
         Task task = repository.findOneById(id);
         return task;
     }

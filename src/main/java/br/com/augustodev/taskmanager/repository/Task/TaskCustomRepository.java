@@ -32,7 +32,7 @@ public class TaskCustomRepository {
                 "SELECT t.ID, t.NAME, t.DESCRIPTION, t.STATUS, t.PRIORITY, t.START_DATE, t.END_DATE, t.CREATE_DATE"
                         + " FROM TASK t WHERE 1 = 1 ");
 
-        if (filter.taskId() != null) {
+        if (filter.id() != null) {
             query.append(" AND t.ID = ? ");
         }
         if (filter.name() != null && !filter.name().isEmpty()) {
@@ -158,7 +158,7 @@ public class TaskCustomRepository {
         public TaskDto mapRow(ResultSet rs, int rowNum) throws SQLException {
 
             TaskDto objeto = new TaskDto(
-                    Long.valueOf(rs.getInt("ID")),
+                    Integer.valueOf(rs.getInt("ID")),
                     rs.getString("NAME"),
                     rs.getString("DESCRIPTION"),
                     rs.getString("STATUS"),

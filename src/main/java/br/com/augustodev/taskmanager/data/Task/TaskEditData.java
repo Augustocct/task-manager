@@ -5,7 +5,7 @@ import java.util.Date;
 import jakarta.validation.constraints.Max;
 
 public record TaskEditData(
-        Long id,
+        Integer id,
         String name,
         String description,
         String status,
