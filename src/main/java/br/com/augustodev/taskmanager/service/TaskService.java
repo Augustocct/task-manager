@@ -115,4 +115,10 @@ public class TaskService {
         return task;
     }
 
+    public void deleteTaskById(Integer id) {
+        Task task = repository.findOneById(id);
+        repository.delete(task);
+        repository.flush();
+    }
+
 }

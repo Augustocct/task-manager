@@ -9,7 +9,7 @@ public record TaskEditData(
         String name,
         String description,
         String status,
-        @Max(1) Integer priority,
+        @Max(5) Integer priority,
         Date startDate,
         Date endDate) {
 

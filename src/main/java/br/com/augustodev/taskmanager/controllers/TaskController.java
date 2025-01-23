@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -55,6 +56,16 @@ public class TaskController {
         Response<Page<TaskDto>> response = new Response<Page<TaskDto>>();
         Page<TaskDto> tasks = taskService.findByFilter(data, pageable);
         response.setData(tasks);
+
+        return ResponseEntity.ok(response);
+    }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Response<String>> delete(@PathVariable Integer id) {
+
+        Response<String> response = new Response<String>();
+        taskService.deleteTaskById(id);
+        response.setData("Task deleted");
 
         return ResponseEntity.ok(response);
     }
