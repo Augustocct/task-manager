@@ -50,8 +50,8 @@ public class TaskController {
         return ResponseEntity.ok(response);
     }
 
-    @PostMapping("/list")
-    public ResponseEntity<Response<Page<TaskDto>>> list(@RequestBody TaskFilterData data, Pageable pageable) {
+    @GetMapping("/list")
+    public ResponseEntity<Response<Page<TaskDto>>> list(TaskFilterData data, Pageable pageable) {
 
         Response<Page<TaskDto>> response = new Response<Page<TaskDto>>();
         Page<TaskDto> tasks = taskService.findByFilter(data, pageable);
